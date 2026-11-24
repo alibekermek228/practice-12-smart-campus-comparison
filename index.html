@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practice 12 comparison of code-based and simulated low-code room availability solutions.">
+  <title>Practice 12 - Smart Campus Comparison</title>
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Software Engineering / Practice 12</p>
+        <h1>Same contract.<br>Two implementation paths.</h1>
+        <p class="hero-copy">A code-based JavaScript engine and a clearly labeled simulated low-code workflow evaluate the same fictional room, inputs and acceptance tests.</p>
+      </div>
+      <aside class="identity-card" aria-label="Student information">
+        <span>Yermekuly Alibek</span>
+        <strong>24B031755</strong>
+        <small>Tuesday / 16:00-19:00</small>
+      </aside>
+    </header>
+
+    <section class="contract-strip" aria-label="Shared contract summary">
+      <div><span>Room</span><strong>Innovation Lab</strong></div>
+      <div><span>Fixed now</span><strong>09:00</strong></div>
+      <div><span>Bookings</span><strong>10:00-11:00 / 14:00-15:00</strong></div>
+      <div><span>Maximum</span><strong>120 minutes</strong></div>
+    </section>
+
+    <section class="control-panel" aria-labelledby="input-title">
+      <div class="section-heading">
+        <div>
+          <p class="step">Shared inputs</p>
+          <h2 id="input-title">Run the same scenario in both solutions</h2>
+        </div>
+        <button id="reset" class="secondary-button" type="button">Reset</button>
+      </div>
+      <form id="comparison-form">
+        <label>Start time<input id="start-time" type="time" value="12:00" required></label>
+        <label>Duration (minutes)<input id="duration" type="number" min="0" max="300" value="60" required></label>
+        <label class="check-label"><input id="blocked" type="checkbox"><span>Room is blocked</span></label>
+        <button class="primary-button" type="submit">Check both solutions</button>
+      </form>
+      <div class="scenario-buttons" aria-label="Load a prepared test case">
+        <span>Prepared cases:</span>
+        <button type="button" data-case="T1">T1 free</button>
+        <button type="button" data-case="T2">T2 overlap</button>
+        <button type="button" data-case="T3">T3 blocked</button>
+        <button type="button" data-case="T4">T4 zero</button>
+        <button type="button" data-case="T5">T5 121 min</button>
+        <button type="button" data-case="T6">T6 past</button>
+        <button type="button" data-case="T7">T7 adjacent</button>
+      </div>
+    </section>
+
+    <section class="solutions" aria-label="Implementation results">
+      <article class="solution-card code-card">
+        <div class="solution-label"><span>01</span><strong>Code-based</strong></div>
+        <h2>JavaScript rule engine</h2>
+        <p>Pure validation and overlap functions, separate from the browser presentation.</p>
+        <dl>
+          <div><dt>Source</dt><dd>src/code-based/engine.js</dd></div>
+          <div><dt>Versioning</dt><dd>Git diff and automated tests</dd></div>
+        </dl>
+        <div id="code-result" class="result neutral" role="status" aria-live="polite">
+          <strong>Ready</strong><span>Submit a shared scenario.</span><code>NOT_RUN</code>
+        </div>
+      </article>
+
+      <article class="solution-card low-card">
+        <div class="solution-label"><span>02</span><strong>Low-code simulation</strong></div>
+        <h2>Declarative Appsmith-style workflow</h2>
+        <p>Widgets and ordered rules are stored as an export model and executed by a small local interpreter.</p>
+        <div class="simulation-note"><strong>Scope label</strong><span>Simulated locally. No claim of an actual Appsmith Cloud deployment.</span></div>
+        <dl>
+          <div><dt>Export</dt><dd>src/low-code/appsmith-export.json</dd></div>
+          <div><dt>Portability</dt><dd>Readable JSON plus local preview</dd></div>
+        </dl>
+        <div id="low-result" class="result neutral" role="status" aria-live="polite">
+          <strong>Ready</strong><span>Submit a shared scenario.</span><code>NOT_RUN</code>
+        </div>
+      </article>
+    </section>
+
+    <section class="test-section" aria-labelledby="tests-title">
+      <div class="section-heading">
+        <div><p class="step">Identical verification</p><h2 id="tests-title">Eight-case contract suite</h2></div>
+        <div id="test-summary" class="test-summary">Running...</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Case</th><th>Expected</th><th>Code-based</th><th>Low-code</th><th>Status</th></tr></thead>
+          <tbody id="test-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="comparison-section" aria-labelledby="comparison-title">
+      <div class="section-heading"><div><p class="step">Observed evidence</p><h2 id="comparison-title">Comparison matrix</h2></div></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Criterion</th><th>Code-based</th><th>Low-code simulation</th></tr></thead>
+          <tbody>
+            <tr><td>Functional tests</td><td>8 / 8</td><td>8 / 8</td></tr>
+            <tr><td>Build and repair time</td><td>Recorded in report/work-log.md</td><td>Recorded in report/work-log.md</td></tr>
+            <tr><td>Customization</td><td>Direct control of rules, UI and tests</td><td>Fast rule edits inside the JSON model</td></tr>
+            <tr><td>Security controls</td><td>textContent output, no dependencies, localhost server boundary</td><td>No connectors or secrets; simulation interpreter restricts operators</td></tr>
+            <tr><td>Versioning / portability</td><td>Plain source, Git-friendly, host-independent</td><td>Export is readable but tied to a simulated Appsmith-style schema</td></tr>
+            <tr><td>Ongoing cost</td><td>Free static hosting</td><td>Local simulation is free; real platform limits may vary</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="recommendation">
+        <strong>Recommendation</strong>
+        <p>Use the code-based solution for this small rule-heavy checker because it is easier to test, review and move between hosts. Use a real low-code platform when delivery speed and managed connectors matter more than source-level control.</p>
+      </div>
+    </section>
+
+    <section class="security-section" aria-labelledby="security-title">
+      <div><p class="step">Lecture 12 connection</p><h2 id="security-title">Security review</h2></div>
+      <ul>
+        <li><strong>SAST:</strong> searched source for unsafe HTML sinks, secrets and unexpected network calls.</li>
+        <li><strong>DAST:</strong> ran invalid, past, overlapping and boundary inputs in the browser.</li>
+        <li><strong>SCA:</strong> package contains zero third-party runtime dependencies.</li>
+        <li><strong>Least privilege:</strong> no database, login, connector, token or production write access.</li>
+      </ul>
+    </section>
+
+    <footer>
+      <span>Yermekuly Alibek / 24B031755</span>
+      <nav><a href="./report/Practice_12_Report.pdf">PDF report</a><a href="https://github.com/alibekermek228/practice-12-smart-campus-comparison">Public repository</a></nav>
+    </footer>
+  </main>
+  <script type="module" src="./src/ui/app.js"></script>
+</body>
+</html>

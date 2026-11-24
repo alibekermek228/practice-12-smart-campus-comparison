@@ -1,0 +1,28 @@
+{
+  "application": {
+    "name": "Smart Campus Low-Code Simulation",
+    "platform": "Appsmith-style simulated export",
+    "simulationDisclosure": "This model was created locally and was not exported from Appsmith Cloud.",
+    "version": 1
+  },
+  "datasources": [],
+  "connectors": [],
+  "secrets": [],
+  "widgets": [
+    { "name": "StartTimeInput", "type": "TIME_PICKER", "defaultValue": "12:00" },
+    { "name": "DurationInput", "type": "NUMBER_INPUT", "defaultValue": 60, "min": 0, "max": 300 },
+    { "name": "BlockedSwitch", "type": "SWITCH", "defaultValue": false },
+    { "name": "CheckButton", "type": "BUTTON", "label": "Check availability", "action": "AvailabilityWorkflow.run" },
+    { "name": "DecisionText", "type": "TEXT", "binding": "{{AvailabilityWorkflow.result.message}}" }
+  ],
+  "workflow": {
+    "name": "AvailabilityWorkflow",
+    "inputs": ["startTime", "duration", "blocked"],
+    "fixedContext": { "now": 540, "room": "Innovation Lab" },
+    "bookings": [
+      { "title": "Morning workshop", "start": 600, "end": 660 },
+      { "title": "Design review", "start": 840, "end": 900 }
+    ],
+    "orderedRules": ["durationOutside", "invalidStart", "notFuture", "blocked", "overlapsAny", "available"]
+  }
+}
